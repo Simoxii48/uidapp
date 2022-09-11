@@ -9,11 +9,12 @@ const minting = () => {
     const connectWithMetamask = useMetamask();
     const disconnectWallet = useDisconnect();
     const editionDrop = useEditionDrop("0xD8Da9C2a267f59901d7D96ccAE6C0c204199bC8D");
-    
+    console.log(address);
 
     const mint = async () => {
         if (editionDrop && address) {
             const tx = await editionDrop.claimTo(address, 0, 1)
+            console.log(tx);
         }
     }
 
@@ -34,7 +35,7 @@ const minting = () => {
               <TitleContainer>
                   <Title>Welcome To<br /> The Popcat <br />Main Club</Title>
                   <Count>
-                    (address && totalSupply )
+                    { address && totalSupply }
                   </Count>
               </TitleContainer>
               <ButtonContainer>
