@@ -22,7 +22,7 @@ const Header = () => {
 export default Header
 
 const HeaderContainer = tw.div`
-
+mt-[30px]
 `
 
 const Container = tw.div `

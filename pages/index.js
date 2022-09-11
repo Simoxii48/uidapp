@@ -36,6 +36,7 @@ bg-black
 w-screen
 h-screen
 text-white
+px-7
 `
 
 

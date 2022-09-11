@@ -1,10 +1,12 @@
 import tw from 'tailwind-styled-components'
 import { useAddress, useDisconnect, useMetamask, useEditionDrop } from "@thirdweb-dev/react";
 import { useEffect, useState } from 'react';
+import ReactLoading from 'react-loading';
 
 
 const minting = () => {
     const [totalSupply, setTotalSupply] = useState(0);
+    const [inProgress, setInProgress] = useState(false);
     const address = useAddress();
     const connectWithMetamask = useMetamask();
     const disconnectWallet = useDisconnect();
@@ -12,10 +14,17 @@ const minting = () => {
     console.log(address);
 
     const mint = async () => {
+      setInProgress(true);
         if (editionDrop && address) {
             const tx = await editionDrop.claimTo(address, 0, 1)
             console.log(tx);
+            setInProgress(false)
         }
+    }
+
+    const startOver = ()=> {
+      setInProgress(false);
+      disconnectWallet();
     }
 
     useEffect(() => {
@@ -42,10 +51,19 @@ const minting = () => {
                 {
                     address 
                     ? <> 
-                    <FilledButton onClick={mint}>
-                      MINT
+                    <FilledButton 
+                      disabled={inProgress}
+                       onClick={mint}>
+                      {
+                        inProgress 
+                        ? <ReactLoading type="bubbles" color="#000" height={70} />
+                        :<>Mint</>
+                      }
+
                   </FilledButton>
-                  <UnfilledButton onClick={disconnectWallet}>
+                  <UnfilledButton 
+                  disabled={inProgress}
+                  onClick={disconnectWallet}>
                       DISCONNECT
                   </UnfilledButton>
                 </>
@@ -76,6 +94,9 @@ flex
 gap-1
 `
 const FilledButton = tw.button`
+flex
+justify-center
+items-center
 flex-1
 bg-[#bfc500] hover:bg-white text-black font-bold py-2 px-1 rounded uppercase h-14
 `
@@ -91,9 +112,10 @@ hover:text-black
 
 const Mint = tw.div`
 max-w-screen-sm
-w-1/3
+lg:w-1/3
+md:w-1/2
 bg-black
-mt-[-200px]
+lg:mt-[-200px]
 flex
 flex-col
 pb-4
