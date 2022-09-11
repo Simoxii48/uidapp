@@ -121,7 +121,6 @@ flex-col
 pb-4
 pr-4
 `
-
 const Title = tw.h2`
 uppercase
 text-3xl
