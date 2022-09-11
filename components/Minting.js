@@ -71,13 +71,13 @@ justify-center
 `
 
 const ButtonContainer = tw.div`
-mt-2
+mt-3
 flex
-gap-4
+gap-1
 `
 const FilledButton = tw.button`
 flex-1
-bg-[#bfc500] hover:bg-white text-black font-bold py-2 px-4 rounded uppercase h-14
+bg-[#bfc500] hover:bg-white text-black font-bold py-2 px-1 rounded uppercase h-14
 `
 
 const UnfilledButton = tw(FilledButton)`
