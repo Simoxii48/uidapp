@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import ReactLoading from 'react-loading';
 
 
-const minting = () => {
+const Minting = () => {
     const [totalSupply, setTotalSupply] = useState(0);
     const [inProgress, setInProgress] = useState(false);
     const address = useAddress();
@@ -78,7 +78,7 @@ const minting = () => {
   )
 }
 
-export default minting
+export default Minting
 
 const Count = tw.div`
 flex
